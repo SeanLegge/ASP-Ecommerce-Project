@@ -1,0 +1,12 @@
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.dll.config
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.dll
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.pdb
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.dll
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.pdb
+C:\Users\Sean\Desktop\School work\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.csprojResolveAssemblyReference.cache
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.dll.config
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.dll
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\bin\eCommerce.pdb
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.csprojResolveAssemblyReference.cache
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.dll
+C:\Users\Sean\Desktop\Schoolwork\ASP.Net\Work\ECommerce Project\eCommerce\eCommerce\obj\Debug\eCommerce.pdb
