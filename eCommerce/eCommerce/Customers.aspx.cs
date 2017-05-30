@@ -7,6 +7,15 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data;
+/*
+By: Sean Legge
+Version: 0.1
+Date Created: June 2014
+Description: This handles the any creation, update, delete or find functionality for customers inside of the database.
+Last Updated: May 29th 2017
+Reasons for Update: 
+	May 29th 2017: Added more informative comments to the file.
+*/
 namespace eCommerce
 {
     public partial class Customers : System.Web.UI.Page
@@ -19,15 +28,18 @@ namespace eCommerce
         {
             lblOutput.Text = "";
         }
+		//Create a new customer in the database
         protected void btnNew_Click(object sender, EventArgs e)
         {
             try
             {
+				//Create phoneregex check to make sure the phone number entered is valid.
                 String PhoneRegex = @"^(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}$";
                 if (!System.Text.RegularExpressions.Regex.IsMatch(txtPhone.Text, PhoneRegex))
                 {
                     lblOutput.Text = "The phone number is not in a proper format.";
                 }
+				//Trim the users input to make sure there are no extra characters 
                 else if(txtCustomerID.Text.Trim().Length == 0
                     || txtFirstName.Text.Trim().Length == 0
                     || txtLastName.Text.Trim().Length == 0
@@ -38,6 +50,7 @@ namespace eCommerce
                     || txtPhone.Text.Trim().Length == 0
                     || txtEmail.Text.Trim().Length == 0)
                 {
+					//Prompt the user to let them know they didn't fill out all of the textboxes
                     lblOutput.Text = "You missed some important data. Please provide it so the information can be saved.";
                 }
                 SqlDataAdapter sqlDataAdapter = null;
@@ -49,7 +62,7 @@ namespace eCommerce
 
                 connectCmd = new SqlConnection(dbConnect);
                 connectCmd.Open();
-
+				//Insert into the database
                 string sqlString = "INSERT INTO Customers (FirstName, LastName, Address, City, Province, PostalCode, Telephone, Email) VALUES (@FirstName, @LastName, @Address, @City, @Province, @PostalCode, @Telephone, @Email)";
 
                 try
@@ -84,6 +97,7 @@ namespace eCommerce
                 ErrorStorage(ex);
             }
         }
+		//Update Customer information in the database
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             
@@ -96,7 +110,7 @@ namespace eCommerce
 
             connectCmd = new SqlConnection(dbConnect);
             connectCmd.Open();
-
+			//Create a string and Update the customers information
             string sqlString = "UPDATE Customers SET FirstName=@FirstName, LastName=@LastName, Address=@Address, City=@City, Province=@Province, PostalCode=@PostalCode, Telephone=@Telephone, Email=@Email WHERE ID=@ID";
 
             try
@@ -120,6 +134,7 @@ namespace eCommerce
 
             DisposeResources(ref sqlDataAdapter, ref ds, ref connectFill, ref connectCmd, ref cmd, ref scmd);
            }
+		 //Delete an existing customer from the database
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             SqlDataAdapter sqlDataAdapter = null;
@@ -184,7 +199,7 @@ namespace eCommerce
             if (scmd != null)
                 scmd.Dispose();
         }
-
+		//Find an existing customer
         protected void btnFind_Click(object sender, EventArgs e)
         {
             SqlDataAdapter sqlDataAdapter = null;

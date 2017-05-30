@@ -8,7 +8,15 @@ using System.IO;
 using System.Collections;
 using System.Data.SqlClient;
 using System.Data;
-
+/*
+By: Sean Legge
+Version: 0.1
+Date Created: June 2014
+Description: This handles pulling product information from the database and displaying it in a table for the user.
+Last Updated: May 29th 2017
+Reasons for Update: 
+	May 29th 2017: Added more informative comments to the file.
+*/
 namespace eCommerce
 {
     public partial class Catalogue : System.Web.UI.Page
@@ -20,12 +28,12 @@ namespace eCommerce
         const int IMAGE = 3;
         const int QUANTITY = 4;
         const int PRICE = 5;
-        //Get the file path
-     
+        
+		//Get the file path
        public static string dbConnect = @"integrated security=True;data source=(localdb)\Projects;persist security info=False;initial catalog=ECommerce";
        System.Collections.ArrayList productFiles = new System.Collections.ArrayList();  
 
-       
+       //Load the page, pull the products from the database and populate the table.
         protected void Page_Load(object sender, EventArgs e)
         {           
             SqlDataAdapter sqlDataAdapter = null;
@@ -99,6 +107,7 @@ namespace eCommerce
             }
             return productFiles;
         }
+		
         private TableRow GetProductRow(ArrayList fileName, int index)
         {
             ArrayList productData = fileName;
@@ -120,7 +129,7 @@ namespace eCommerce
             tcProdID.Text = productData[PRODUCT_ID].ToString();
             tr.Cells.Add(tcProdID);
 
-            //Cell for Manufacturors number
+            //Cell for Manufacturers number
             TableCell tcManuID = new TableCell();
             tcManuID.Text = productData[MANUFACTURE].ToString();
             tr.Cells.Add(tcManuID);
@@ -148,6 +157,7 @@ namespace eCommerce
 
             return tr;
         }
+		//Add a book to the customers cart
         protected void btnAddBookToCart_Click(object sender, EventArgs e)
         {
             //Find the button that was click

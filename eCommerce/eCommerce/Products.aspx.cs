@@ -7,7 +7,15 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data;
-
+/*
+By: Sean Legge
+Version: 0.1
+Date Created: June 2014
+Description: This handles the any creation, update, delete or find functionality for products inside of the database.
+Last Updated: May 29th 2017
+Reasons for Update: 
+	May 29th 2017: Added more informative comments to the file.
+*/
 namespace eCommerce
 {
     public partial class Products : System.Web.UI.Page
@@ -17,10 +25,12 @@ namespace eCommerce
         {
             lblOutput.Text = "";
         }
+		//Add a new product to the database
         protected void btnNew_Click(object sender, EventArgs e)
         {
             try
-            {         
+            {        
+				//Regex to make sure that the price they entered if formatted correctly.
                  String MoneyRegex = @"^([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$";
                 
                     if (!System.Text.RegularExpressions.Regex.IsMatch(txtPrice.Text, MoneyRegex))
@@ -34,6 +44,7 @@ namespace eCommerce
                     || txtQuantity.Text.Trim().Length == 0
                     || txtPrice.Text.Trim().Length == 0)
                     {
+						//Inform the user that they failed to enter values into all the textboxes.
                         lblOutput.Text = "You missed some important data. Please provide it so the information can be saved.";
                     }
                     else
@@ -49,7 +60,7 @@ namespace eCommerce
 
                             connectCmd = new SqlConnection(dbConnect);
                             connectCmd.Open();
-
+							//Create a string to hold the insert statement for the database.
                             string sqlString = "INSERT INTO Products (ManufacCode, Description, Picture, QtyOnHand, Price) VALUES (@ManufacCode, @Description, @Picture, @QtyOnHand, @Price)";
 
                             try
@@ -81,6 +92,7 @@ namespace eCommerce
                ErrorStorage(ex);
             }   
         }  
+		//Update an existing product in the database.
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             SqlDataAdapter sqlDataAdapter = null;
@@ -92,7 +104,7 @@ namespace eCommerce
 
             connectCmd = new SqlConnection(dbConnect);
             connectCmd.Open();
-
+			//Create a string to hold the update statement
             string sqlString = "UPDATE Products SET ManufacCode=@ManufacCode, Description=@Description, Picture=@Picture, QtyOnHand=@QtyOnHand, Price=@Price WHERE ID=@ID";
 
             try
@@ -116,29 +128,7 @@ namespace eCommerce
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (btnDelete.Text == "Delete")
-            //    {
-            //        //Calls the Load button event handler
-            //        btnUpdate_Click(sender, e);
-            //        if (txtProductID.Text != "")
-            //        {
-            //            btnDelete.Text = "Confirm";
-            //        }
-            //    }
-            //    else
-            //    {
-            //        //Calls the delete customer method
-            //        lblOutput.Text = DeleteProduct(int.Parse(txtProductID.Text));
-            //        btnDelete.Text = "Delete";
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    ErrorStorage(ex);
-            //}
+          
             SqlDataAdapter sqlDataAdapter = null;
             DataSet ds = null;
             SqlConnection connectFill = null;
@@ -148,7 +138,7 @@ namespace eCommerce
 
             connectCmd = new SqlConnection(dbConnect);
             connectCmd.Open();
-
+			//Create a string to hold the delete statement
             string sqlString = "DELETE FROM Products WHERE ID=@ID";
 
             try
@@ -195,6 +185,7 @@ namespace eCommerce
             if (scmd != null)
                 scmd.Dispose();
         }
+		//Find an existing product in the database.
         protected void btnFind_Click(object sender, EventArgs e)
         {
             SqlDataAdapter sqlDataAdapter = null;
